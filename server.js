@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 
 // Route 2 → second PDF (optional)
 app.get("/file2", (req, res) => {
-    const filePath = path.join(__dirname, "file2.pdf");
+    const filePath = path.join(__dirname, "dsp2.pdf");
     res.download(filePath);
 });
 
