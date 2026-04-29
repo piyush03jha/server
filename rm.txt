@@ -1,0 +1,178 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+% TikZ
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+
+\geometry{margin=1in}
+
+\title{Hypothesis Testing}
+\author{Abhisheak Pratap Singh}
+\date{April 17, 2026}
+
+\begin{document}
+
+\maketitle
+
+%------------------------------------------------
+\begin{abstract}
+Hypothesis testing is a statistical technique used to evaluate assumptions about population parameters. 
+This paper explains hypothesis types, testing procedure, and demonstrates a real-life example.
+\end{abstract}
+
+%------------------------------------------------
+\section{Introduction}
+
+Hypothesis testing is widely used in statistics to make decisions based on sample data. 
+It helps determine whether the observed results are due to chance or represent a real effect.
+
+%------------------------------------------------
+\section{Types of Hypothesis}
+
+\subsection{Null Hypothesis ($H_0$)}
+Represents no change or no effect.
+
+Example: $H_0: \mu = 170$ cm
+
+\subsection{Alternative Hypothesis ($H_1$)}
+Represents a significant difference.
+
+Example: $H_1: \mu \neq 170$ cm
+
+\subsection{Directional and Non-directional}
+Directional hypotheses specify direction, while non-directional only indicate difference.
+
+%------------------------------------------------
+\section{Procedure of Hypothesis Testing}
+
+\begin{enumerate}
+\item Define $H_0$ and $H_1$
+\item Choose significance level ($\alpha$)
+\item Select appropriate test
+\item Compute test statistic
+\item Calculate p-value
+\item Make decision
+\item Draw conclusion
+\end{enumerate}
+
+%------------------------------------------------
+\section{Flowchart Representation}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    every node/.style={draw, rectangle, rounded corners, align=center, minimum width=2.5cm, minimum height=1cm},
+    arrow/.style={->, thick}
+]
+
+\node (start) {Hypothesis Testing};
+
+\node (h0) [below left=of start] {$H_0$};
+\node (h1) [below right=of start] {$H_1$};
+
+\node (alpha) [below=of h0] {Significance $\alpha$};
+\node (test) [below=of h1] {Test Selection};
+
+\node (ztest) [below left=of test] {Z-test};
+\node (ttest) [below=of test] {t-test};
+\node (chisq) [below right=of test] {$\chi^2$};
+
+\node (pvalue) [below=of alpha] {Compute p-value};
+\node (decision) [below=of pvalue] {Decision};
+
+\node (reject) [below left=of decision] {Reject $H_0$};
+\node (accept) [below right=of decision] {Do not Reject $H_0$};
+
+\draw[arrow] (start) -- (h0);
+\draw[arrow] (start) -- (h1);
+\draw[arrow] (h0) -- (alpha);
+\draw[arrow] (h1) -- (test);
+\draw[arrow] (test) -- (ztest);
+\draw[arrow] (test) -- (ttest);
+\draw[arrow] (test) -- (chisq);
+\draw[arrow] (alpha) -- (pvalue);
+\draw[arrow] (pvalue) -- (decision);
+\draw[arrow] (decision) -- (reject);
+\draw[arrow] (decision) -- (accept);
+
+\end{tikzpicture}
+\caption{Flowchart of Hypothesis Testing Process}
+\end{figure}
+
+%------------------------------------------------
+\section{Numerical Example}
+
+A study claims the average height of students is 170 cm. A sample of 100 students has mean height 167 cm and standard deviation 10 cm. Test at $\alpha = 0.05$.
+
+\textbf{Given:}
+
+$\mu = 170,\quad \bar{x} = 167,\quad s = 10,\quad n = 100$
+
+\subsection*{Step 1: Hypotheses}
+$H_0: \mu = 170$ \\
+$H_1: \mu \neq 170$
+
+\subsection*{Step 2: Test Statistic}
+
+Since $n > 30$, use Z-test:
+
+\begin{equation}
+Z = \frac{\bar{x} - \mu}{s/\sqrt{n}}
+\end{equation}
+
+\subsection*{Step 3: Calculation}
+
+\[
+Z = \frac{167 - 170}{10/\sqrt{100}} = \frac{-3}{1} = -3
+\]
+
+\subsection*{Step 4: p-value}
+
+\[
+p \approx 0.0027
+\]
+
+\subsection*{Step 5: Decision}
+
+Since $p < 0.05$, reject $H_0$.
+
+\subsection*{Step 6: Conclusion}
+
+There is sufficient evidence that the average height differs from 170 cm.
+
+%------------------------------------------------
+\section{Summary Table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+Type & Expression & Meaning \\
+\midrule
+Null ($H_0$) & $\mu = \mu_0$ & No difference \\
+Alt (Two-tailed) & $\mu \neq \mu_0$ & Any difference \\
+Alt (Right-tailed) & $\mu > \mu_0$ & Increase \\
+Alt (Left-tailed) & $\mu < \mu_0$ & Decrease \\
+\bottomrule
+\end{tabular}
+\caption{Hypothesis Types}
+\end{table}
+
+%------------------------------------------------
+\section{Conclusion}
+
+Hypothesis testing provides a systematic framework for decision-making in statistics. 
+This example demonstrated how statistical tests help validate real-world assumptions.
+
+\end{document}
