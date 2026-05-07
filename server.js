@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 // Route 1 → first PDF
 app.get("/", (req, res) => {
-    const filePath = path.join(__dirname, "Semiconductor.pdf");
+    const filePath = path.join(__dirname, "Semiconductor.zip");
     res.download(filePath);  // forces download
 });
 
